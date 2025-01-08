@@ -62,7 +62,9 @@ public struct ChatBots: View {
         messages.append("You: \(currentMessage)")
         currentMessage = ""
     }
+    
     public func cobaPrint(tulis : String){
         print(tulis)
+        messages.append(tulis)
     }
 }
