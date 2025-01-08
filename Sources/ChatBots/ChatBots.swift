@@ -4,19 +4,20 @@
 import SwiftUI
 
 public struct ChatBots: View {
-    @Binding var messages: [String]
-    @State private var currentMessage: String = ""
+    @ObservedObject var viewModel: ChatBotsViewModel // Observing the ViewModel
     
-    public init(messages: Binding<[String]>, currentMessage: String) {
-        self._messages = messages
-        self.currentMessage = currentMessage
-    }
+    @State private var currentMessage: String = ""
+
+    // Internal initializer
+      internal init(viewModel: ChatBotsViewModel) {
+          self.viewModel = viewModel
+      }
     
     public var body: some View {
         VStack {
             // Chat Messages
             List {
-                ForEach(messages, id: \.self) { message in
+                ForEach(viewModel.messages, id: \.self) { message in
                     HStack {
                         if message.starts(with: "You: ") {
                             Spacer() // Align user's messages to the right
@@ -34,10 +35,10 @@ public struct ChatBots: View {
                             Spacer() // Align other messages to the left
                         }
                     }
-                }.listRowSeparator(.hidden)
+                }
             }
             .listStyle(PlainListStyle())
-            
+
             // Message Input
             HStack {
                 TextField("Type a message...", text: $currentMessage)
@@ -45,7 +46,7 @@ public struct ChatBots: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
                     .frame(minHeight: 40)
-                
+
                 Button(action: {
                     self.sendMessage()
                 }) {
@@ -57,14 +58,15 @@ public struct ChatBots: View {
             .padding()
         }
     }
+
+    // Send message function
     public func sendMessage() {
-        guard !currentMessage.isEmpty else { return }
-        messages.append("You: \(currentMessage)")
+        viewModel.sendMessage(message: currentMessage)
         currentMessage = ""
     }
-    
-    public func cobaPrint(tulis : String){
-        print(tulis)
-        messages.append(tulis)
+
+    // Print function to append messages
+    public func cobaPrint(tulis: String) {
+        viewModel.cobaPrint(tulis: tulis)
     }
 }
