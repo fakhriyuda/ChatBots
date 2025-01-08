@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "ChatBots",
     platforms: [
-        .iOS(.v13), // Minimum iOS version is 15
-        .macOS(.v13), // Minimum macOS version is 10.15
+        .iOS(.v15), // Minimum iOS version is 13
+        .macOS(.v13), // Minimum macOS version is 13
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
