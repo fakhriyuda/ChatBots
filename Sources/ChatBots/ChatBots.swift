@@ -34,7 +34,7 @@ public struct ChatBots: View {
                             Spacer() // Align other messages to the left
                         }
                     }
-                }
+                }.listRowSeparator(.hidden)
             }
             .listStyle(PlainListStyle())
             
