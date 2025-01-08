@@ -7,11 +7,10 @@ public struct ChatBots: View {
     @ObservedObject var viewModel: ChatBotsViewModel // Observing the ViewModel
     
     @State private var currentMessage: String = ""
-
-    // Internal initializer
-      internal init(viewModel: ChatBotsViewModel) {
-          self.viewModel = viewModel
-      }
+    
+    public init(viewModel: ChatBotsViewModel) {
+        self.viewModel = viewModel
+    }
     
     public var body: some View {
         VStack {
@@ -38,7 +37,7 @@ public struct ChatBots: View {
                 }
             }
             .listStyle(PlainListStyle())
-
+            
             // Message Input
             HStack {
                 TextField("Type a message...", text: $currentMessage)
@@ -46,7 +45,7 @@ public struct ChatBots: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
                     .frame(minHeight: 40)
-
+                
                 Button(action: {
                     self.sendMessage()
                 }) {
@@ -58,13 +57,13 @@ public struct ChatBots: View {
             .padding()
         }
     }
-
+    
     // Send message function
     public func sendMessage() {
         viewModel.sendMessage(message: currentMessage)
         currentMessage = ""
     }
-
+    
     // Print function to append messages
     public func cobaPrint(tulis: String) {
         viewModel.cobaPrint(tulis: tulis)
