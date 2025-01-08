@@ -4,10 +4,15 @@
 import SwiftUI
 
 public class ChatBots {
-    
     @State private var messages: [String] = ["Hello! 👋", "How are you?"]
     @State private var currentMessage: String = ""
-    var body: some View {
+    
+    public init(messages: [String], currentMessage: String) {
+        self.messages = messages
+        self.currentMessage = currentMessage
+    }
+    
+    public var body: some View {
         VStack {
             // Chat Messages
             List {
