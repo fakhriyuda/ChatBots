@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-public class ChatBots {
+public struct ChatBots: View {
     @State private var messages: [String] = ["Hello! 👋", "How are you?"]
     @State private var currentMessage: String = ""
     
