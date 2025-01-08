@@ -4,11 +4,11 @@
 import SwiftUI
 
 public struct ChatBots: View {
-    @State private var messages: [String] = ["Hello! 👋", "How are you?"]
+    @Binding var messages: [String]
     @State private var currentMessage: String = ""
     
-    public init(messages: [String], currentMessage: String) {
-        self.messages = messages
+    public init(messages: Binding<[String]>, currentMessage: String) {
+        self._messages = messages
         self.currentMessage = currentMessage
     }
     
